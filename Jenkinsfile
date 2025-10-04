@@ -76,24 +76,24 @@ pipeline {
     }
     
     post {
-        always {
-            echo 'Publishing test results and cleanup...'
+        // always {
+        //     echo 'Publishing test results and cleanup...'
             
-            // Publish test results
-            publishTestResults testResultsPattern: 'test-results.xml'
+        //     // Publish test results
+        //     publishTestResults testResultsPattern: 'test-results.xml'
             
-            // Publish coverage reports
-            publishCoverage adapters: [
-                coberturaAdapter('coverage.xml')
-            ], sourceFileResolver: sourceFiles('STORE_LAST_BUILD')
+        //     // Publish coverage reports
+        //     publishCoverage adapters: [
+        //         coberturaAdapter('coverage.xml')
+        //     ], sourceFileResolver: sourceFiles('STORE_LAST_BUILD')
             
-            // Archive test reports
-            archiveArtifacts artifacts: 'htmlcov/**, test-results.xml, coverage.xml', 
-                             allowEmptyArchive: true
+        //     // Archive test reports
+        //     archiveArtifacts artifacts: 'htmlcov/**, test-results.xml, coverage.xml', 
+        //                      allowEmptyArchive: true
             
-            // Clean workspace
-            cleanWs()
-        }
+        //     // Clean workspace
+        //     cleanWs()
+        // }
         
         success {
             echo 'Pipeline completed successfully!'
