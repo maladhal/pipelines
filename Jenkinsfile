@@ -61,10 +61,7 @@ pipeline {
                         // Use JUnit plugin to publish test results
                         junit testResults: 'test-results.xml', 
                               allowEmptyResults: true,
-                              keepLongStdio: true,
-                              testDataPublishers: [
-                                  [$class: 'StabilityTestDataPublisher']
-                              ]
+                              keepLongStdio: true
                         
                         echo 'Test results published successfully using JUnit plugin'
                     } else {
