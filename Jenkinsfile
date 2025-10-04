@@ -22,16 +22,14 @@ pipeline {
                     if (isUnix()) {
                         sh '''
                             python3 -m venv .venv
-                            source .venv/bin/activate
-                            pip install --upgrade pip
-                            pip install -r requirements.txt
+                            ./.venv/bin/pip install --upgrade pip
+                            ./.venv/bin/pip install -r requirements.txt
                         '''
                     } else {
                         bat '''
                             python -m venv .venv
-                            .venv\\Scripts\\activate.bat
-                            python -m pip install --upgrade pip
-                            pip install -r requirements.txt
+                            .venv\\Scripts\\python.exe -m pip install --upgrade pip
+                            .venv\\Scripts\\pip.exe install -r requirements.txt
                         '''
                     }
                 }
@@ -44,13 +42,11 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh '''
-                            source .venv/bin/activate
-                            pytest --junitxml=test-results.xml --cov=. --cov-report=xml --cov-report=html
+                            ./.venv/bin/python -m pytest --junitxml=test-results.xml --cov=. --cov-report=xml --cov-report=html
                         '''
                     } else {
                         bat '''
-                            .venv\\Scripts\\activate.bat
-                            pytest --junitxml=test-results.xml --cov=. --cov-report=xml --cov-report=html
+                            .venv\\Scripts\\python.exe -m pytest --junitxml=test-results.xml --cov=. --cov-report=xml --cov-report=html
                         '''
                     }
                 }
