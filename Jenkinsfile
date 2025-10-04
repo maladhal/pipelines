@@ -52,6 +52,27 @@ pipeline {
                 }
             }
         }
+        
+        stage('Publish Test Results (JUnit)') {
+            steps {
+                echo 'Publishing test results using JUnit plugin...'
+                script {
+                    if (fileExists('test-results.xml')) {
+                        // Use JUnit plugin to publish test results
+                        junit testResults: 'test-results.xml', 
+                              allowEmptyResults: true,
+                              keepLongStdio: true,
+                              testDataPublishers: [
+                                  [$class: 'StabilityTestDataPublisher']
+                              ]
+                        
+                        echo 'Test results published successfully using JUnit plugin'
+                    } else {
+                        echo 'No test results file found (test-results.xml)'
+                    }
+                }
+            }
+        }
     }
     
     post {
