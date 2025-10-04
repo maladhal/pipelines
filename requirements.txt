@@ -1,0 +1,15 @@
+# Testing framework
+pytest>=7.4.0
+
+# Coverage reporting
+pytest-cov>=4.1.0
+
+# HTML test reports (optional but useful)
+pytest-html>=3.2.0
+
+# XML test reports for Jenkins
+pytest-xdist>=3.3.0
+
+# Additional useful pytest plugins
+pytest-mock>=3.11.0
+pytest-timeout>=2.1.0
